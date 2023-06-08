@@ -3,7 +3,7 @@ package springboot.config;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import springboot.entity.UserInfo;
+import springboot.entity.User;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,7 +17,7 @@ public class UserInfoUserDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     // just map my own userInfo object into  UserInfoUserDetails object.
-    public UserInfoUserDetails(UserInfo userInfo) {
+    public UserInfoUserDetails(User userInfo) {
         name=userInfo.getName();
         password=userInfo.getPassword();
 

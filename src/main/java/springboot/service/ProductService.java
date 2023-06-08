@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import springboot.dto.Product;
-import springboot.entity.UserInfo;
+import springboot.dto.UserInfo;
+import springboot.entity.User;
+import springboot.mapper.UserInfoMapper;
 import springboot.repository.UserInfoRepository;
 
 import java.util.List;
@@ -23,6 +25,9 @@ public class ProductService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     /*
         When we annotate a method in Spring Bean with @PostConstruct annotation, it gets executed after the spring bean is initialized.
@@ -53,7 +58,7 @@ public class ProductService {
 
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        repository.save(userInfo);
+        repository.save(userInfoMapper.userInfoToUser(userInfo));
         return "user added to system ";
     }
 }
